@@ -18,7 +18,11 @@
         "./skills/skill-creator",
         "./skills/claude-refactoring",
         "./skills/project-scaffolder",
-        "./skills/guide-maker"
+        "./skills/guide-maker",
+        "./skills/prd-generator",
+        "./skills/tech-stack-generator",
+        "./skills/design-system-generator",
+        "./skills/mvp-roadmap-generator"
       ]
     }
   ]
