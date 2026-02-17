@@ -1,29 +1,80 @@
 {
   "name": "heechan-frontend-skills",
+  "description": "AI Native Engineer를 위한 프론트엔드 개발 생산성 스킬 모음",
   "owner": {
     "name": "Heechan",
     "email": ""
   },
-  "metadata": {
-    "description": "AI Native Engineer를 위한 프론트엔드 개발 생산성 스킬 모음",
-    "version": "1.0.0"
-  },
   "plugins": [
     {
-      "name": "frontend-skills",
-      "description": "프론트엔드 개발 생산성 스킬 모음: 프로젝트 구조 설정, CLAUDE.md 리팩토링, 스킬 생성 가이드, Notion 가이드 문서 생성",
-      "source": "./",
-      "strict": false,
-      "skills": [
-        "./skills/skill-creator",
-        "./skills/claude-refactoring",
-        "./skills/project-scaffolder",
-        "./skills/guide-maker",
-        "./skills/prd-generator",
-        "./skills/tech-stack-generator",
-        "./skills/design-system-generator",
-        "./skills/mvp-roadmap-generator"
-      ]
+      "name": "skill-creator",
+      "description": "Guide for creating effective skills that extend Claude's capabilities with specialized knowledge, workflows, or tool integrations.",
+      "author": { "name": "Heechan" },
+      "source": "./skills/skill-creator",
+      "category": "development"
+    },
+    {
+      "name": "claude-refactoring",
+      "description": "CLAUDE.md 메모리 파일 리팩토링, 구조 개선, 컨텍스트 효율성 최적화",
+      "author": { "name": "Heechan" },
+      "source": "./skills/claude-refactoring",
+      "category": "productivity"
+    },
+    {
+      "name": "claudemd-builder",
+      "description": "CLAUDE.md 파일을 블록 단위로 생성, 검사, 정리하는 스킬",
+      "author": { "name": "Heechan" },
+      "source": "./skills/claudemd-builder",
+      "category": "productivity"
+    },
+    {
+      "name": "project-scaffolder",
+      "description": "프론트엔드 프로젝트 구조 분석 및 AI 에이전트용 컨텍스트 문서 생성",
+      "author": { "name": "Heechan" },
+      "source": "./skills/project-scaffolder",
+      "category": "development"
+    },
+    {
+      "name": "guide-maker",
+      "description": "Notion 사용자 가이드 생성. 테이블, 색상, 코드블록을 활용한 가시성 높은 문서 생성. Notion MCP 필요.",
+      "author": { "name": "Heechan" },
+      "source": "./skills/guide-maker",
+      "category": "productivity"
+    },
+    {
+      "name": "prd-generator",
+      "description": "PRD(Product Requirements Document) 작성. 서비스 핵심 가치, 타겟 사용자, 요구사항 정의.",
+      "author": { "name": "Heechan" },
+      "source": "./skills/prd-generator",
+      "category": "development"
+    },
+    {
+      "name": "tech-stack-generator",
+      "description": "Tech Stack 문서 작성. 프로젝트 기술, 패키지, 외부 서비스 정의.",
+      "author": { "name": "Heechan" },
+      "source": "./skills/tech-stack-generator",
+      "category": "development"
+    },
+    {
+      "name": "design-system-generator",
+      "description": "Design System 문서 작성. 일관된 UI/UX 규칙과 컴포넌트 정의.",
+      "author": { "name": "Heechan" },
+      "source": "./skills/design-system-generator",
+      "category": "development"
+    },
+    {
+      "name": "mvp-roadmap-generator",
+      "description": "MVP Roadmap 문서 작성. 개발 순서, 마일스톤, 스프린트 계획 정의.",
+      "author": { "name": "Heechan" },
+      "source": "./skills/mvp-roadmap-generator",
+      "category": "development"
+    },
+    {
+      "name": "web-to-markdown",
+      "description": "Fetch web pages and save them as clean Markdown files into docs/ directory.",
+      "author": { "name": "Heechan" },
+      "source": "./skills/web-to-markdown",
+      "category": "development"
     }
   ]
 }
