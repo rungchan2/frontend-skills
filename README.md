@@ -6,26 +6,28 @@ Claude Code에서 반복적인 작업을 자동화하고, 프로젝트 설정 �
 
 ## Skills
 
-| 스킬 | 설명 |
-|------|------|
-| **skill-creator** | 새로운 Claude 스킬 생성 가이드 및 도구 |
-| **claude-refactoring** | CLAUDE.md 파일 분석, 리팩토링, 최적화 |
+| 스킬                   | 설명                                             |
+| ---------------------- | ------------------------------------------------ |
+| **skill-creator**      | 새로운 Claude 스킬 생성 가이드 및 도구           |
+| **claude-refactoring** | CLAUDE.md 파일 분석, 리팩토링, 최적화            |
 | **project-scaffolder** | 프론트엔드 프로젝트 구조 분석 및 아키텍처 문서화 |
-| **guide-maker** | Notion에 사용자 가이드 문서 자동 생성 (MCP 필요) |
+| **guide-maker**        | Notion에 사용자 가이드 문서 자동 생성 (MCP 필요) |
 
 ## Installation
 
 ### Claude Code
 
 마켓플레이스에서 설치:
+
 ```
-/plugin marketplace add <username>/frontend-skills
-/plugin install frontend-skills@<username>-frontend-skills
+/plugin marketplace add rungchan2/frontend-skills
+/plugin install frontend-skills@rungchan2-frontend-skills
 ```
 
 또는 직접 설치:
+
 ```
-/plugin install github:<username>/frontend-skills
+/plugin install github:rungchan2/frontend-skills
 ```
 
 ### Claude.ai
