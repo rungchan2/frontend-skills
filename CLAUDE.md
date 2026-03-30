@@ -22,7 +22,9 @@ frontend-skills/
 │   ├── tech-stack-generator/
 │   ├── design-system-generator/
 │   ├── mvp-roadmap-generator/
-│   └── web-to-markdown/
+│   ├── web-to-markdown/
+│   ├── e2e-testing/
+│   └── supabase-db-setting/
 └── docs/                     # 참고 문서
 ```
 
@@ -85,6 +87,8 @@ agent: Explore                      # context: fork 시 에이전트 타입 (선
 | `design-system-generator` | Design System 문서 작성 |
 | `mvp-roadmap-generator` | MVP Roadmap 문서 작성 |
 | `web-to-markdown` | 웹 페이지를 Markdown으로 저장 |
+| `e2e-testing` | 자연어 E2E 테스트 (agent-browser CLI 기반) |
+| `supabase-db-setting` | Supabase DB 스키마 개발환경 초기 세팅 |
 
 ## Key Commands
 

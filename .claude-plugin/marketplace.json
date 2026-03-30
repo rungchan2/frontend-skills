@@ -75,6 +75,20 @@
       "author": { "name": "Heechan" },
       "source": "./skills/web-to-markdown",
       "category": "development"
+    },
+    {
+      "name": "e2e-testing",
+      "description": "자연어 E2E 테스트 프레임워크. agent-browser CLI로 브라우저 테스트를 자동 실행. 시나리오 파일 기반, human-in-the-loop 지원.",
+      "author": { "name": "Heechan" },
+      "source": "./skills/e2e-testing",
+      "category": "testing"
+    },
+    {
+      "name": "supabase-db-setting",
+      "description": "Supabase DB 스키마 개발환경 초기 세팅. 타입 생성 스크립트, bash 기반 스키마 CLI, client/server 제네릭 타입 바인딩, CLAUDE.md 마이그레이션 규칙 추가.",
+      "author": { "name": "Heechan" },
+      "source": "./skills/supabase-db-setting",
+      "category": "development"
     }
   ]
 }

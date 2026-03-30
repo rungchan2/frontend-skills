@@ -12,6 +12,7 @@ Claude Code에서 반복적인 작업을 자동화하고, 프로젝트 설정 �
 | **claude-refactoring** | CLAUDE.md 파일 분석, 리팩토링, 최적화            |
 | **project-scaffolder** | 프론트엔드 프로젝트 구조 분석 및 아키텍처 문서화 |
 | **guide-maker**        | Notion에 사용자 가이드 문서 자동 생성 (MCP 필요) |
+| **e2e-testing**        | 자연어 E2E 테스트. agent-browser CLI 기반 브라우저 자동화 |
 
 ## Installation
 
@@ -57,7 +58,8 @@ frontend-skills/
 │   ├── skill-creator/      # 스킬 생성 가이드
 │   ├── claude-refactoring/ # CLAUDE.md 리팩토링
 │   ├── project-scaffolder/ # 프로젝트 구조화
-│   └── guide-maker/        # Notion 가이드 생성
+│   ├── guide-maker/        # Notion 가이드 생성
+│   └── e2e-testing/        # 자연어 E2E 테스트
 ├── docs/                   # 참고 문서
 ├── CLAUDE.md
 └── README.md
