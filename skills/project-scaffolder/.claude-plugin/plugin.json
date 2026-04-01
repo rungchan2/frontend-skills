@@ -1,0 +1,6 @@
+{
+  "name": "project-scaffolder",
+  "description": "프론트엔드 프로젝트 구조 분석 및 AI 에이전트용 컨텍스트 문서 생성",
+  "version": "1.0.0",
+  "author": { "name": "Heechan" }
+}

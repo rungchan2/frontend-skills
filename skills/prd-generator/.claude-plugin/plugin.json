@@ -1,0 +1,6 @@
+{
+  "name": "prd-generator",
+  "description": "PRD(Product Requirements Document) 작성. 서비스 핵심 가치, 타겟 사용자, 요구사항 정의.",
+  "version": "1.0.0",
+  "author": { "name": "Heechan" }
+}

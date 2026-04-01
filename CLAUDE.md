@@ -11,9 +11,15 @@ Claude Code Plugin 레포지토리. AI 에이전트(Claude Code)의 기능을 �
 ```
 frontend-skills/
 ├── .claude-plugin/
-│   └── marketplace.json      # 마켓플레이스 레지스트리 (각 스킬 = 개별 플러그인)
-├── skills/                   # 각 스킬 디렉토리가 하나의 플러그인
-│   ├── skill-creator/
+│   └── marketplace.json          # 마켓플레이스 레지스트리
+├── skills/                       # 각 디렉토리가 하나의 플러그인
+│   ├── supabase-db-setting/      # 플러그인 예시:
+│   │   ├── .claude-plugin/
+│   │   │   └── plugin.json       #   플러그인 매니페스트
+│   │   └── skills/
+│   │       └── supabase-db-setting/
+│   │           ├── SKILL.md      #   스킬 정의
+│   │           └── scripts/      #   스킬 리소스
 │   ├── claude-refactoring/
 │   ├── claudemd-builder/
 │   ├── project-scaffolder/
@@ -23,9 +29,8 @@ frontend-skills/
 │   ├── design-system-generator/
 │   ├── mvp-roadmap-generator/
 │   ├── web-to-markdown/
-│   ├── e2e-testing/
-│   └── supabase-db-setting/
-└── docs/                     # 참고 문서
+│   └── e2e-testing/
+└── docs/                         # 참고 문서
 ```
 
 ### 설치 방식
@@ -39,17 +44,23 @@ frontend-skills/
 /plugin install claudemd-builder@heechan-frontend-skills
 ```
 
-## Skill 구조
+## Plugin / Skill 구조
 
-각 스킬은 `SKILL.md`가 필수인 디렉토리:
+각 플러그인은 `plugin.json` 매니페스트와 `skills/` 하위 디렉토리를 가진다:
 
 ```
-skill-name/
-├── SKILL.md              # YAML frontmatter + Markdown 지침 (필수)
-├── scripts/              # 실행 가능 코드 (Python/Bash)
-├── references/           # 참조 문서 (필요 시에만 컨텍스트에 로드)
-└── assets/               # 출력에 사용되는 파일 (컨텍스트에 로드하지 않음)
+plugin-name/                      # 플러그인 루트
+├── .claude-plugin/
+│   └── plugin.json               # 플러그인 매니페스트 (필수)
+└── skills/
+    └── skill-name/               # 스킬 디렉토리
+        ├── SKILL.md              # YAML frontmatter + Markdown 지침 (필수)
+        ├── scripts/              # 실행 가능 코드 (Python/Bash)
+        ├── references/           # 참조 문서
+        └── assets/               # 출력용 파일
 ```
+
+호출: `/heechan-frontend-skills:skill-name`
 
 ### SKILL.md Frontmatter
 

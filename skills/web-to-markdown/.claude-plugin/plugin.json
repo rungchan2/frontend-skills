@@ -1,0 +1,6 @@
+{
+  "name": "web-to-markdown",
+  "description": "Fetch web pages and save them as clean Markdown files into docs/ directory.",
+  "version": "1.0.0",
+  "author": { "name": "Heechan" }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "e2e-testing",
+  "description": "자연어 E2E 테스트 프레임워크. agent-browser CLI로 브라우저 테스트를 자동 실행. 시나리오 파일 기반, human-in-the-loop 지원.",
+  "version": "1.0.0",
+  "author": { "name": "Heechan" }
+}

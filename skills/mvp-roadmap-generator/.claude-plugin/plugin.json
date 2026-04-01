@@ -1,0 +1,6 @@
+{
+  "name": "mvp-roadmap-generator",
+  "description": "MVP Roadmap 문서 작성. 개발 순서, 마일스톤, 스프린트 계획 정의.",
+  "version": "1.0.0",
+  "author": { "name": "Heechan" }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "claude-refactoring",
+  "description": "CLAUDE.md 메모리 파일 리팩토링, 구조 개선, 컨텍스트 효율성 최적화",
+  "version": "1.0.0",
+  "author": { "name": "Heechan" }
+}
