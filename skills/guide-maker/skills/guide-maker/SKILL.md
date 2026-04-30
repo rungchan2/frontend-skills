@@ -1,49 +1,70 @@
 ---
 name: guide-maker
-description: Place 프로젝트 사용자 가이드를 Notion에 생성하는 스킬. 테이블, 색상, 코드블록, 화살표, 이모지를 활용한 가시성 높은 문서 생성. "가이드 만들어줘", "사용자 매뉴얼 작성해줘", "도움말 문서 생성해줘", "Notion에 문서 작성해줘" 요청 시 사용. Notion MCP (MCP_DOCKER) 필요.
+description: 프로젝트 기능에 대한 사용자 가이드를 Notion에 생성하는 스킬. 테이블, 색상, 코드블록, 화살표, 이모지를 활용한 가시성 높은 문서 생성. "가이드 만들어줘", "사용자 매뉴얼 작성해줘", "도움말 문서 생성해줘", "Notion에 문서 작성해줘" 요청 시 사용. Notion 공식 remote MCP (OAuth) 사용.
 ---
 
 # Guide Maker
 
-Place 프로젝트 기능에 대한 **가시성 높은** 사용자 가이드를 Notion에 생성.
+프로젝트 기능에 대한 **가시성 높은** 사용자 가이드를 Notion에 생성.
 
 ## 사전 요구사항
 
-- Notion MCP (`MCP_DOCKER`) 연결
-- 부모 페이지 ID: `0656783731824d52aa4ac9523521bd14`
+- **Notion remote MCP** 연결 (이 플러그인 설치 시 자동 등록됨)
+- 최초 사용 시 Claude Code에서 OAuth 로그인 1회만 하면 됨 (별도 환경변수 불필요)
+- 가이드를 작성할 **부모 페이지**가 본인 Notion workspace에 존재하고, 해당 integration이 그 페이지에 connection으로 추가되어 있어야 함
 
 ## 워크플로우
 
+### 0. 부모 페이지 확보 (동적)
+
+대화 시작 시 **부모 페이지 ID를 다음 순서로 확보**:
+
+1. 사용자가 메시지에 부모 페이지 URL/ID를 직접 제공했으면 → 그것 사용
+2. 아니면 Notion MCP의 `search` 도구로 사용자가 말한 부모 페이지명을 검색해서 후보 제시
+3. 그래도 모호하면 사용자에게 명시적으로 묻기:
+   > "가이드를 어느 Notion 페이지 아래에 만들까요? 페이지 URL이나 이름을 알려주세요."
+
+**❌ 금지:** 페이지 ID를 하드코딩하거나 임의로 가정하기
+**✅ 필수:** 매 호출마다 사용자 컨텍스트에서 부모 페이지를 동적으로 결정
+
+확보한 page_id는 이번 대화 turn에서만 변수로 보관, 스킬 내부 어디에도 영구 저장하지 않음.
+
+Notion 페이지 URL에서 ID 추출:
+```
+https://www.notion.so/Workspace-abc123def456...
+                                ^^^^^^^^^^^^^^^
+                                마지막 32자 = page_id (하이픈 추가하여 사용)
+```
+
 ### 1. 기능 분석
-해당 기능의 코드(`app/` 폴더) 분석 → 주요 버튼, 폼, 테이블, 상태값 파악
+해당 기능의 코드 분석 → 주요 버튼, 폼, 테이블, 상태값 파악
 
 ### 2. 콘텐츠 구조 설계
 문서 구조에 맞춰 **전체 블록 배열 설계** (페이지 위치, Part별 Step, 테이블, FAQ 등)
 
 ### 3. 한 번에 생성 (🚨 필수!)
 
-**반드시 `code-mode` 스크립트 한 번으로 전체 가이드 생성:**
+Notion remote MCP는 표준 Notion API를 그대로 노출합니다. 일반적으로 다음 두 도구를 사용:
 
-```javascript
-// 1. 페이지 생성
-const result = JSON.parse(this['API-post-page']({
-  parent: { page_id: "0656783731824d52aa4ac9523521bd14" },
-  properties: { title: [{ text: { content: "📑 [기능명]" } }] }
-}));
-const pageId = result.id;
+- `notion-create-pages` (또는 `API-post-page`): 새 페이지 생성
+- `notion-update-page` / `notion-patch-block-children` (또는 `API-patch-block-children`): 페이지에 자식 블록 추가
 
-// 2. 모든 블록을 하나의 배열로 구성
-const allBlocks = [
-  // Part 1 헤더 + Step 1~N + divider
-  // Part 2 헤더 + Step 1~N + divider
-  // 테이블들
-  // FAQ 토글들
-];
+> 정확한 도구명은 MCP 클라이언트가 노출하는 이름을 따릅니다. `/mcp` 슬래시 메뉴에서 사용 가능한 도구명을 확인하세요.
 
-// 3. 단 한 번의 API 호출로 콘텐츠 추가
-this['API-patch-block-children']({ block_id: pageId, children: allBlocks });
+**전체 가이드는 단 한 번의 페이지 생성 + 한 번의 블록 추가로 완성:**
 
-return `https://www.notion.so/${pageId.replace(/-/g, '')}`;
+```text
+1. create-page 호출
+   - parent: { page_id: <step 0에서 확보한 부모 페이지 ID> }
+   - properties.title: "📑 [기능명]"
+   → 응답에서 새 페이지 id 획득
+
+2. patch-block-children 호출
+   - block_id: 위에서 받은 새 페이지 id
+   - children: [전체 블록 배열 — Part 헤더, Step, divider, 테이블, FAQ 토글 모두 포함]
+
+3. 사용자에게 URL 반환:
+   https://www.notion.so/<page_id에서 하이픈 제거>
 ```
 
 **❌ 금지:** Step별/Part별로 나눠서 여러 번 API 호출
@@ -58,7 +79,7 @@ URL 전달: `https://www.notion.so/[page_id_without_hyphens]`
 
 ```
 ## 페이지 위치
-**가맹점 대시보드** → **기능명**
+**[상위 메뉴]** → **[기능명]**
 [이미지]
 ---
 
@@ -100,7 +121,7 @@ A: [답변]
 | 요소 | 용도 | 예시 |
 |------|------|------|
 | **테이블** | 컬럼/상태/필드 설명 | 상태 테이블, 입력 필드 테이블 |
-| **→ 화살표** | 경로/흐름 | `대시보드 → 원비청구` |
+| **→ 화살표** | 경로/흐름 | `대시보드 → 설정 → 알림` |
 | **이모지+색상** | 상태 구분 | `✅ 완납 🟢`, `❌ 미납 🔴` |
 | **굵은 텍스트** | 버튼/메뉴 강조 | `**'저장'**` |
 | **인라인 코드** | 입력값/형식 | `` `010-1234-5678` `` |
