@@ -40,8 +40,8 @@ frontend-skills/
 /plugin marketplace add heechan/frontend-skills
 
 # 원하는 스킬만 골라 설치
-/plugin install prd-generator@heechan-frontend-skills
-/plugin install claudemd-builder@heechan-frontend-skills
+/plugin install prd-generator@fs
+/plugin install claudemd-builder@fs
 ```
 
 ## Plugin / Skill 구조
@@ -60,7 +60,7 @@ plugin-name/                      # 플러그인 루트
         └── assets/               # 출력용 파일
 ```
 
-호출: `/heechan-frontend-skills:skill-name`
+호출: `/fs:skill-name`
 
 ### SKILL.md Frontmatter
 
