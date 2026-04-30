@@ -9,14 +9,17 @@ description: 새 프론트엔드 프로젝트 초기 세팅 시 표준 패키지
 
 ## 적용 대상 패턴
 
-현재 활성화된 하위 스킬:
-
 | # | 스킬 | 설치/생성 |
 |---|------|----------|
 | 1 | `tailwind-cn` | `clsx`, `tailwind-merge` + `lib/utils.ts` |
-| 2 | `dayjs-kst` | `dayjs` + `lib/dayjs.ts` (KST + 한국어 locale) |
+| 2 | `dayjs-kst` | `dayjs` + `lib/dayjs.ts` (KST + 한국어 locale + 헬퍼 5종) |
+| 3 | `supabase-clients` | `@supabase/ssr` + client/server/service-role/middleware 4종 |
+| 4 | `tanstack-query` | `@tanstack/react-query` + query-defaults / query-keys / QueryProvider |
+| 5 | `zustand-store` | `zustand` + State/Actions 패턴 + user-store |
+| 6 | `form-validation` | `react-hook-form` + `zod` + shadcn form 컴포넌트 + 표준 예시 폼 |
+| 7 | `package-map` | (코드 생성 없음) 기능별 패키지 룩업 표만 참고 |
 
-> 이후 추가 예정: `tanstack-query`, `zustand-store`, `supabase-clients`, `form-validation`, `package-map`
+> `package-map`은 lookup 스킬이라 `setup-all`에서 자동 실행하지 않는다. 사용자가 패키지 결정 시점에 따로 호출.
 
 ## 워크플로우
 
@@ -41,9 +44,15 @@ ls components.json 2>/dev/null && echo "shadcn already initialized" || echo "sha
 
 > "다음 항목을 적용합니다. 빼고 싶은 게 있으면 말씀해주세요:
 > - [ ] tailwind-cn (lib/utils.ts)
-> - [ ] dayjs-kst (lib/dayjs.ts)"
+> - [ ] dayjs-kst (lib/dayjs.ts)
+> - [ ] supabase-clients (lib/supabase/* + middleware.ts)
+> - [ ] tanstack-query (lib/query-* + providers/query-provider.tsx)
+> - [ ] zustand-store (stores/user-store.ts)
+> - [ ] form-validation (shadcn form + 예시 폼)"
 
-기본은 전부 적용. 사용자가 일부 제외하면 그것만 건너뜀.
+기본은 전부 적용. 사용자가 일부 제외하면 그것만 건너뜀. 의존 관계:
+- `zustand-store`의 user-store는 `supabase-clients`의 client를 import → 함께 적용 권장
+- `form-validation`은 shadcn 초기화 필요 → `components.json` 없으면 먼저 `npx shadcn@latest init` 실행
 
 ### 3. 순서대로 하위 스킬 실행
 
@@ -52,8 +61,14 @@ ls components.json 2>/dev/null && echo "shadcn already initialized" || echo "sha
 ```
 skills/project-packages/skills/
 ├── tailwind-cn/SKILL.md
-└── dayjs-kst/SKILL.md
+├── dayjs-kst/SKILL.md
+├── supabase-clients/SKILL.md
+├── tanstack-query/SKILL.md
+├── zustand-store/SKILL.md
+└── form-validation/SKILL.md
 ```
+
+권장 실행 순서: `tailwind-cn` → `dayjs-kst` → `supabase-clients` → `tanstack-query` → `zustand-store` → `form-validation`. (인프라 의존 관계 순서)
 
 각 스킬은 자체 워크플로우와 `assets/` 안의 표준 파일을 갖고 있으므로, 이 마스터 스킬에서 내용을 중복 기술하지 않는다. 위치 결정/패키지 설치/파일 복사 단계는 각 SKILL.md를 그대로 따른다.
 
@@ -71,7 +86,7 @@ cat package.json | grep -E '"(clsx|tailwind-merge|dayjs)"'
 
 ### 5. CLAUDE.md 통합 블록 (선택)
 
-사용자가 원하면 두 스킬의 사용 규칙을 CLAUDE.md의 단일 "## 패키지 사용 규칙" 섹션으로 묶어 추가한다. 각 스킬의 규칙을 따로따로 박지 말고 한 섹션으로 정리:
+사용자가 원하면 적용한 모든 스킬의 사용 규칙을 CLAUDE.md의 단일 "## 패키지 사용 규칙" 섹션으로 묶어 추가한다. 각 스킬의 규칙을 따로따로 박지 말고 한 섹션으로 정리:
 
 ```markdown
 ## 패키지 사용 규칙
@@ -83,6 +98,24 @@ cat package.json | grep -E '"(clsx|tailwind-merge|dayjs)"'
 ### 날짜 (dayjs)
 - 모든 dayjs 호출은 `@/lib/dayjs`에서 import. 직접 `from "dayjs"` 금지.
 - date-only 문자열은 `parseDateOnly()` 사용. `new Date()` 직접 호출 금지.
+
+### Supabase
+- 'use client': `@/lib/supabase/client`
+- Server Component / Action / Route Handler: `@/lib/supabase/server` (await)
+- 관리자/cron/webhook: `createServiceRoleClient()` (RLS 우회. 일반 흐름 금지)
+
+### React Query
+- queryKey는 `@/lib/query-keys`만 사용. 인라인 배열 금지.
+- staleTime/gcTime은 컴포넌트에서 오버라이드 금지. SHORT_CACHE_CONFIG / REALTIME_CONFIG 사용.
+
+### Zustand
+- store는 State / Actions 인터페이스 분리, initialState 상수, reset() 포함.
+- 컴포넌트에서는 selector 사용. store 전체 구독 금지.
+
+### 폼
+- react-hook-form + zod + shadcn Form 조합 강제. useState 기반 폼 금지.
+- 타입은 `z.infer`로 도출. 별도 interface 금지.
+- 서버 검증 에러는 `form.setError`로 매핑.
 ```
 
 ## 비-목표

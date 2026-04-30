@@ -9,7 +9,7 @@ AI Native Engineer를 위한 프론트엔드 개발 생산성 [Claude Code 플�
 | 플러그인 | 포함 스킬 | 목적 |
 |---------|---------|------|
 | `supabase` | `initial-setting` | Supabase DB 스키마 개발환경 초기 세팅 (타입 생성, 스키마 CLI, client/server 바인딩) |
-| `project-packages` | `setup-all`, `tailwind-cn`, `dayjs-kst` | 프로젝트 초기 세팅 시 표준 패키지 + 중앙 setup 일괄 적용 |
+| `project-packages` | `setup-all`, `tailwind-cn`, `dayjs-kst`, `supabase-clients`, `tanstack-query`, `zustand-store`, `form-validation`, `package-map` | 프로젝트 초기 세팅 시 표준 패키지 + 중앙 setup 일괄 적용 |
 | `spec-generator` | `prd`, `tech-stack`, `design-system`, `mvp-roadmap` | 프로젝트 스펙 문서 생성 |
 | `claudemd` | `builder`, `refactoring` | `CLAUDE.md` 메모리 파일 작성/리팩토링 |
 | `guide-maker` | `guide-maker` | Notion에 사용자 가이드 자동 생성 (Notion remote MCP 자동 포함) |

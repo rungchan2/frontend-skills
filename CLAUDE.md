@@ -20,7 +20,7 @@ frontend-skills/
 │   │       └── initial-setting/  #   플러그인 안의 스킬
 │   │           ├── SKILL.md
 │   │           └── scripts/
-│   ├── project-packages/         # tailwind-cn, dayjs-kst, setup-all (확장 예정)
+│   ├── project-packages/         # setup-all, tailwind-cn, dayjs-kst, supabase-clients, tanstack-query, zustand-store, form-validation, package-map
 │   ├── spec-generator/           # prd, tech-stack, design-system, mvp-roadmap
 │   ├── claudemd/                 # builder, refactoring
 │   ├── guide-maker/              # 단독 (Notion MCP 포함)
@@ -90,6 +90,11 @@ agent: Explore                      # context: fork 시 에이전트 타입 (선
 | `project-packages` | `setup-all` | 새 프로젝트에 표준 중앙 setup 일괄 적용 (마스터) |
 | | `tailwind-cn` | shadcn 기반 cn() 유틸 + 통화 포맷 (lib/utils.ts) |
 | | `dayjs-kst` | dayjs 한국 타임존/locale 중앙 setup (lib/dayjs.ts) |
+| | `supabase-clients` | Supabase client/server/service-role + middleware 4종 |
+| | `tanstack-query` | TanStack Query 전역 캐시 설정 + queryKey 팩토리 + Provider |
+| | `zustand-store` | State/Actions 분리 패턴 + Supabase 연동 user-store |
+| | `form-validation` | react-hook-form + zod + shadcn Form 표준 |
+| | `package-map` | 기능별 표준 패키지 룩업 표 (참고용) |
 | `spec-generator` | `prd` | PRD 작성 |
 | | `tech-stack` | Tech Stack 문서 작성 |
 | | `design-system` | Design System 문서 작성 |
