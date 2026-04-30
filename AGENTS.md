@@ -1,8 +1,8 @@
-# CLAUDE.md
+# AGENTS.md
 
 ## Project Overview
 
-Claude Code Plugin 레포지토리. AI 에이전트(Claude Code)의 기능을 확장하는 커스텀 스킬을 개발하고 마켓플레이스로 배포한다.
+Codex Plugin 레포지토리. AI 에이전트(Codex)의 기능을 확장하는 커스텀 스킬을 개발하고 마켓플레이스로 배포한다.
 
 ## 레포 구조
 
@@ -10,17 +10,17 @@ Claude Code Plugin 레포지토리. AI 에이전트(Claude Code)의 기능을 �
 
 ```
 frontend-skills/
-├── .claude-plugin/
+├── .Codex-plugin/
 │   └── marketplace.json          # 마켓플레이스 레지스트리
 ├── skills/                       # 각 디렉토리가 하나의 플러그인
 │   ├── supabase-db-setting/      # 플러그인 예시:
-│   │   ├── .claude-plugin/
+│   │   ├── .Codex-plugin/
 │   │   │   └── plugin.json       #   플러그인 매니페스트
 │   │   └── skills/
 │   │       └── supabase-db-setting/
 │   │           ├── SKILL.md      #   스킬 정의
 │   │           └── scripts/      #   스킬 리소스
-│   ├── claude-refactoring/
+│   ├── Codex-refactoring/
 │   ├── claudemd-builder/
 │   ├── project-scaffolder/
 │   ├── guide-maker/
@@ -40,8 +40,8 @@ frontend-skills/
 /plugin marketplace add heechan/frontend-skills
 
 # 원하는 스킬만 골라 설치
-/plugin install prd-generator@frontend-skills
-/plugin install claudemd-builder@frontend-skills
+/plugin install prd-generator@fs
+/plugin install claudemd-builder@fs
 ```
 
 ## Plugin / Skill 구조
@@ -50,7 +50,7 @@ frontend-skills/
 
 ```
 plugin-name/                      # 플러그인 루트
-├── .claude-plugin/
+├── .Codex-plugin/
 │   └── plugin.json               # 플러그인 매니페스트 (필수)
 └── skills/
     └── skill-name/               # 스킬 디렉토리
@@ -60,7 +60,7 @@ plugin-name/                      # 플러그인 루트
         └── assets/               # 출력용 파일
 ```
 
-호출: `/frontend-skills:skill-name`
+호출: `/fs:skill-name`
 
 ### SKILL.md Frontmatter
 
@@ -89,8 +89,8 @@ agent: Explore                      # context: fork 시 에이전트 타입 (선
 | 스킬 | 설명 |
 |------|------|
 | `skill-creator` | 스킬 생성 가이드. 새 스킬 만들거나 기존 스킬 수정 시 |
-| `claude-refactoring` | CLAUDE.md 리팩토링 및 정리 |
-| `claudemd-builder` | CLAUDE.md 블록 기반 생성/검사/정리 |
+| `Codex-refactoring` | AGENTS.md 리팩토링 및 정리 |
+| `claudemd-builder` | AGENTS.md 블록 기반 생성/검사/정리 |
 | `project-scaffolder` | 프론트엔드 프로젝트 구조 분석/문서화 |
 | `guide-maker` | Notion 사용자 가이드 생성 (MCP 필요) |
 | `prd-generator` | PRD 작성 |
@@ -120,4 +120,4 @@ python skills/skill-creator/scripts/quick_validate.py <skill-folder>
 - 상세 정보는 별도 파일로 분리 (Progressive Disclosure)
 - description에 트리거 조건 포함 (body가 아닌 description이 트리거 판단 기준)
 - README.md, CHANGELOG.md 등 부가 문서 불필요
-- 컨텍스트 윈도우는 공공재 — Claude가 이미 아는 정보는 생략
+- 컨텍스트 윈도우는 공공재 — Codex가 이미 아는 정보는 생략
