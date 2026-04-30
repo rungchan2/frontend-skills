@@ -1,6 +1,0 @@
-{
-  "name": "docs-generator",
-  "description": "프로젝트 문서 생성 스킬 모음. PRD, Tech Stack, Design System, MVP Roadmap, Notion 가이드.",
-  "version": "1.0.0",
-  "author": { "name": "Heechan" }
-}

@@ -14,11 +14,18 @@
       "category": "development"
     },
     {
-      "name": "docs-generator",
-      "description": "프로젝트 문서 생성 스킬 모음. PRD, Tech Stack, Design System, MVP Roadmap, Notion 가이드.",
+      "name": "spec-generator",
+      "description": "프로젝트 스펙 문서 생성 스킬 모음. PRD, Tech Stack, Design System, MVP Roadmap.",
       "author": { "name": "Heechan" },
-      "source": "./skills/docs-generator",
+      "source": "./skills/spec-generator",
       "category": "development"
+    },
+    {
+      "name": "guide-maker",
+      "description": "Notion 사용자 가이드 생성. 테이블, 색상, 코드블록을 활용한 가시성 높은 문서 생성. Notion MCP 자동 포함.",
+      "author": { "name": "Heechan" },
+      "source": "./skills/guide-maker",
+      "category": "productivity"
     },
     {
       "name": "claudemd",

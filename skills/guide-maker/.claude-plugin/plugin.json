@@ -1,0 +1,15 @@
+{
+  "name": "guide-maker",
+  "description": "Notion 사용자 가이드 생성. 테이블, 색상, 코드블록을 활용한 가시성 높은 문서 생성. Notion MCP 자동 포함.",
+  "version": "1.0.0",
+  "author": { "name": "Heechan" },
+  "mcpServers": {
+    "notion": {
+      "command": "npx",
+      "args": ["-y", "@notionhq/notion-mcp-server"],
+      "env": {
+        "OPENAPI_MCP_HEADERS": "{\"Authorization\":\"Bearer ${NOTION_API_KEY}\",\"Notion-Version\":\"2022-06-28\"}"
+      }
+    }
+  }
+}

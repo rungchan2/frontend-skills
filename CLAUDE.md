@@ -20,8 +20,9 @@ frontend-skills/
 │   │       └── initial-setting/  #   플러그인 안의 스킬
 │   │           ├── SKILL.md
 │   │           └── scripts/
-│   ├── docs-generator/           # prd, tech-stack, design-system, mvp-roadmap, guide-maker
+│   ├── spec-generator/           # prd, tech-stack, design-system, mvp-roadmap
 │   ├── claudemd/                 # builder, refactoring
+│   ├── guide-maker/              # 단독 (Notion MCP 포함)
 │   ├── project-scaffolder/       # 단독
 │   ├── web-to-markdown/          # 단독
 │   └── e2e-testing/              # 단독
@@ -36,7 +37,7 @@ frontend-skills/
 
 # 원하는 플러그인 골라 설치
 /plugin install supabase@frontend-skills
-/plugin install docs-generator@frontend-skills
+/plugin install spec-generator@frontend-skills
 /plugin install claudemd@frontend-skills
 ```
 
@@ -56,7 +57,7 @@ plugin-name/                      # 플러그인 루트
         └── assets/               # 출력용 파일
 ```
 
-호출: `/{plugin-name}:{skill-name}` (예: `/supabase:initial-setting`, `/docs-generator:prd`)
+호출: `/{plugin-name}:{skill-name}` (예: `/supabase:initial-setting`, `/spec-generator:prd`)
 
 ### SKILL.md Frontmatter
 
@@ -85,13 +86,13 @@ agent: Explore                      # context: fork 시 에이전트 타입 (선
 | 플러그인 | 포함 스킬 | 설명 |
 |---------|----------|------|
 | `supabase` | `initial-setting` | Supabase DB 스키마 개발환경 초기 세팅 |
-| `docs-generator` | `prd` | PRD 작성 |
+| `spec-generator` | `prd` | PRD 작성 |
 | | `tech-stack` | Tech Stack 문서 작성 |
 | | `design-system` | Design System 문서 작성 |
 | | `mvp-roadmap` | MVP Roadmap 문서 작성 |
-| | `guide-maker` | Notion 사용자 가이드 생성 (MCP 필요) |
 | `claudemd` | `builder` | CLAUDE.md 블록 기반 생성/검사/정리 |
 | | `refactoring` | CLAUDE.md 리팩토링 및 정리 |
+| `guide-maker` | (단독) | Notion 사용자 가이드 생성 (Notion MCP 자동 포함) |
 | `project-scaffolder` | (단독) | 프론트엔드 프로젝트 구조 분석/문서화 |
 | `web-to-markdown` | (단독) | 웹 페이지를 Markdown으로 저장 |
 | `e2e-testing` | (단독) | 자연어 E2E 테스트 (agent-browser CLI 기반) |

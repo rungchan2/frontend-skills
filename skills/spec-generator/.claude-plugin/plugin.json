@@ -1,0 +1,6 @@
+{
+  "name": "spec-generator",
+  "description": "프로젝트 스펙 문서 생성 스킬 모음. PRD, Tech Stack, Design System, MVP Roadmap.",
+  "version": "1.0.0",
+  "author": { "name": "Heechan" }
+}
