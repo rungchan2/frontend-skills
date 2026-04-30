@@ -1,0 +1,6 @@
+{
+  "name": "project-packages",
+  "description": "프로젝트 초기 세팅 시 표준 패키지 설치와 중앙 setup 파일을 한 번에 생성. shadcn 기반 cn 유틸, dayjs KST, TanStack Query, Zustand, Supabase 클라이언트 등.",
+  "version": "1.0.0",
+  "author": { "name": "Heechan" }
+}

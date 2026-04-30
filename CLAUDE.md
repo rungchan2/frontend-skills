@@ -20,6 +20,7 @@ frontend-skills/
 │   │       └── initial-setting/  #   플러그인 안의 스킬
 │   │           ├── SKILL.md
 │   │           └── scripts/
+│   ├── project-packages/         # tailwind-cn, dayjs-kst, setup-all (확장 예정)
 │   ├── spec-generator/           # prd, tech-stack, design-system, mvp-roadmap
 │   ├── claudemd/                 # builder, refactoring
 │   ├── guide-maker/              # 단독 (Notion MCP 포함)
@@ -86,6 +87,9 @@ agent: Explore                      # context: fork 시 에이전트 타입 (선
 | 플러그인 | 포함 스킬 | 설명 |
 |---------|----------|------|
 | `supabase` | `initial-setting` | Supabase DB 스키마 개발환경 초기 세팅 |
+| `project-packages` | `setup-all` | 새 프로젝트에 표준 중앙 setup 일괄 적용 (마스터) |
+| | `tailwind-cn` | shadcn 기반 cn() 유틸 + 통화 포맷 (lib/utils.ts) |
+| | `dayjs-kst` | dayjs 한국 타임존/locale 중앙 setup (lib/dayjs.ts) |
 | `spec-generator` | `prd` | PRD 작성 |
 | | `tech-stack` | Tech Stack 문서 작성 |
 | | `design-system` | Design System 문서 작성 |

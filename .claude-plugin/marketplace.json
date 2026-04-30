@@ -14,6 +14,13 @@
       "category": "development"
     },
     {
+      "name": "project-packages",
+      "description": "프로젝트 초기 세팅용 표준 패키지/중앙 setup 스킬 모음. tailwind cn, dayjs KST 등.",
+      "author": { "name": "Heechan" },
+      "source": "./skills/project-packages",
+      "category": "development"
+    },
+    {
       "name": "spec-generator",
       "description": "프로젝트 스펙 문서 생성 스킬 모음. PRD, Tech Stack, Design System, MVP Roadmap.",
       "author": { "name": "Heechan" },
