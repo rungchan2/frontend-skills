@@ -6,30 +6,25 @@ Claude Code Plugin 레포지토리. AI 에이전트(Claude Code)의 기능을 �
 
 ## 레포 구조
 
-이 레포는 **마켓플레이스** — 각 스킬이 개별 플러그인으로 등록되어 사용자가 원하는 것만 골라 설치한다.
+이 레포는 **마켓플레이스** — 각 플러그인이 목적별로 그룹화되어 있고, 그 안에 여러 스킬을 담는다. 사용자는 원하는 플러그인만 골라 설치한다.
 
 ```
 frontend-skills/
 ├── .claude-plugin/
 │   └── marketplace.json          # 마켓플레이스 레지스트리
 ├── skills/                       # 각 디렉토리가 하나의 플러그인
-│   ├── supabase-db-setting/      # 플러그인 예시:
+│   ├── supabase/                 # 그룹 플러그인 예시:
 │   │   ├── .claude-plugin/
 │   │   │   └── plugin.json       #   플러그인 매니페스트
 │   │   └── skills/
-│   │       └── supabase-db-setting/
-│   │           ├── SKILL.md      #   스킬 정의
-│   │           └── scripts/      #   스킬 리소스
-│   ├── claude-refactoring/
-│   ├── claudemd-builder/
-│   ├── project-scaffolder/
-│   ├── guide-maker/
-│   ├── prd-generator/
-│   ├── tech-stack-generator/
-│   ├── design-system-generator/
-│   ├── mvp-roadmap-generator/
-│   ├── web-to-markdown/
-│   └── e2e-testing/
+│   │       └── initial-setting/  #   플러그인 안의 스킬
+│   │           ├── SKILL.md
+│   │           └── scripts/
+│   ├── docs-generator/           # prd, tech-stack, design-system, mvp-roadmap, guide-maker
+│   ├── claudemd/                 # builder, refactoring
+│   ├── project-scaffolder/       # 단독
+│   ├── web-to-markdown/          # 단독
+│   └── e2e-testing/              # 단독
 └── docs/                         # 참고 문서
 ```
 
@@ -39,9 +34,10 @@ frontend-skills/
 # 마켓플레이스 등록
 /plugin marketplace add heechan/frontend-skills
 
-# 원하는 스킬만 골라 설치
-/plugin install prd-generator@frontend-skills
-/plugin install claudemd-builder@frontend-skills
+# 원하는 플러그인 골라 설치
+/plugin install supabase@frontend-skills
+/plugin install docs-generator@frontend-skills
+/plugin install claudemd@frontend-skills
 ```
 
 ## Plugin / Skill 구조
@@ -60,7 +56,7 @@ plugin-name/                      # 플러그인 루트
         └── assets/               # 출력용 파일
 ```
 
-호출: `/frontend-skills:skill-name`
+호출: `/{plugin-name}:{skill-name}` (예: `/supabase:initial-setting`, `/docs-generator:prd`)
 
 ### SKILL.md Frontmatter
 
@@ -84,35 +80,21 @@ agent: Explore                      # context: fork 시 에이전트 타입 (선
 | 2. SKILL.md body | 지침, 워크플로우 | 스킬 트리거 시 | <5k |
 | 3. Bundled resources | scripts, references, assets | 필요 시 | 무제한 |
 
-## 현재 스킬 목록
+## 현재 플러그인 / 스킬 목록
 
-| 스킬 | 설명 |
-|------|------|
-| `skill-creator` | 스킬 생성 가이드. 새 스킬 만들거나 기존 스킬 수정 시 |
-| `claude-refactoring` | CLAUDE.md 리팩토링 및 정리 |
-| `claudemd-builder` | CLAUDE.md 블록 기반 생성/검사/정리 |
-| `project-scaffolder` | 프론트엔드 프로젝트 구조 분석/문서화 |
-| `guide-maker` | Notion 사용자 가이드 생성 (MCP 필요) |
-| `prd-generator` | PRD 작성 |
-| `tech-stack-generator` | Tech Stack 문서 작성 |
-| `design-system-generator` | Design System 문서 작성 |
-| `mvp-roadmap-generator` | MVP Roadmap 문서 작성 |
-| `web-to-markdown` | 웹 페이지를 Markdown으로 저장 |
-| `e2e-testing` | 자연어 E2E 테스트 (agent-browser CLI 기반) |
-| `supabase-db-setting` | Supabase DB 스키마 개발환경 초기 세팅 |
-
-## Key Commands
-
-```bash
-# 새 스킬 초기화
-python skills/skill-creator/scripts/init_skill.py <name> --path ./skills
-
-# 스킬 패키징
-python skills/skill-creator/scripts/package_skill.py <skill-folder>
-
-# 스킬 검증
-python skills/skill-creator/scripts/quick_validate.py <skill-folder>
-```
+| 플러그인 | 포함 스킬 | 설명 |
+|---------|----------|------|
+| `supabase` | `initial-setting` | Supabase DB 스키마 개발환경 초기 세팅 |
+| `docs-generator` | `prd` | PRD 작성 |
+| | `tech-stack` | Tech Stack 문서 작성 |
+| | `design-system` | Design System 문서 작성 |
+| | `mvp-roadmap` | MVP Roadmap 문서 작성 |
+| | `guide-maker` | Notion 사용자 가이드 생성 (MCP 필요) |
+| `claudemd` | `builder` | CLAUDE.md 블록 기반 생성/검사/정리 |
+| | `refactoring` | CLAUDE.md 리팩토링 및 정리 |
+| `project-scaffolder` | (단독) | 프론트엔드 프로젝트 구조 분석/문서화 |
+| `web-to-markdown` | (단독) | 웹 페이지를 Markdown으로 저장 |
+| `e2e-testing` | (단독) | 자연어 E2E 테스트 (agent-browser CLI 기반) |
 
 ## Development Rules
 

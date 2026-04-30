@@ -7,24 +7,24 @@
   },
   "plugins": [
     {
-      "name": "skill-creator",
-      "description": "Guide for creating effective skills that extend Claude's capabilities with specialized knowledge, workflows, or tool integrations.",
+      "name": "supabase",
+      "description": "Supabase 관련 스킬 모음. DB 초기 세팅, 마이그레이션, RLS 등.",
       "author": { "name": "Heechan" },
-      "source": "./skills/skill-creator",
+      "source": "./skills/supabase",
       "category": "development"
     },
     {
-      "name": "claude-refactoring",
-      "description": "CLAUDE.md 메모리 파일 리팩토링, 구조 개선, 컨텍스트 효율성 최적화",
+      "name": "docs-generator",
+      "description": "프로젝트 문서 생성 스킬 모음. PRD, Tech Stack, Design System, MVP Roadmap, Notion 가이드.",
       "author": { "name": "Heechan" },
-      "source": "./skills/claude-refactoring",
-      "category": "productivity"
+      "source": "./skills/docs-generator",
+      "category": "development"
     },
     {
-      "name": "claudemd-builder",
-      "description": "CLAUDE.md 파일을 블록 단위로 생성, 검사, 정리하는 스킬",
+      "name": "claudemd",
+      "description": "CLAUDE.md 메모리 파일 작성/리팩토링 스킬 모음.",
       "author": { "name": "Heechan" },
-      "source": "./skills/claudemd-builder",
+      "source": "./skills/claudemd",
       "category": "productivity"
     },
     {
@@ -32,41 +32,6 @@
       "description": "프론트엔드 프로젝트 구조 분석 및 AI 에이전트용 컨텍스트 문서 생성",
       "author": { "name": "Heechan" },
       "source": "./skills/project-scaffolder",
-      "category": "development"
-    },
-    {
-      "name": "guide-maker",
-      "description": "Notion 사용자 가이드 생성. 테이블, 색상, 코드블록을 활용한 가시성 높은 문서 생성. Notion MCP 필요.",
-      "author": { "name": "Heechan" },
-      "source": "./skills/guide-maker",
-      "category": "productivity"
-    },
-    {
-      "name": "prd-generator",
-      "description": "PRD(Product Requirements Document) 작성. 서비스 핵심 가치, 타겟 사용자, 요구사항 정의.",
-      "author": { "name": "Heechan" },
-      "source": "./skills/prd-generator",
-      "category": "development"
-    },
-    {
-      "name": "tech-stack-generator",
-      "description": "Tech Stack 문서 작성. 프로젝트 기술, 패키지, 외부 서비스 정의.",
-      "author": { "name": "Heechan" },
-      "source": "./skills/tech-stack-generator",
-      "category": "development"
-    },
-    {
-      "name": "design-system-generator",
-      "description": "Design System 문서 작성. 일관된 UI/UX 규칙과 컴포넌트 정의.",
-      "author": { "name": "Heechan" },
-      "source": "./skills/design-system-generator",
-      "category": "development"
-    },
-    {
-      "name": "mvp-roadmap-generator",
-      "description": "MVP Roadmap 문서 작성. 개발 순서, 마일스톤, 스프린트 계획 정의.",
-      "author": { "name": "Heechan" },
-      "source": "./skills/mvp-roadmap-generator",
       "category": "development"
     },
     {
@@ -82,13 +47,6 @@
       "author": { "name": "Heechan" },
       "source": "./skills/e2e-testing",
       "category": "testing"
-    },
-    {
-      "name": "supabase-db-setting",
-      "description": "Supabase DB 스키마 개발환경 초기 세팅. 타입 생성 스크립트, bash 기반 스키마 CLI, client/server 제네릭 타입 바인딩, CLAUDE.md 마이그레이션 규칙 추가.",
-      "author": { "name": "Heechan" },
-      "source": "./skills/supabase-db-setting",
-      "category": "development"
     }
   ]
 }

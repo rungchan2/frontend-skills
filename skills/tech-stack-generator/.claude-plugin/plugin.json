@@ -1,6 +1,0 @@
-{
-  "name": "tech-stack-generator",
-  "description": "Tech Stack 문서 작성. 프로젝트 기술, 패키지, 외부 서비스 정의.",
-  "version": "1.0.0",
-  "author": { "name": "Heechan" }
-}

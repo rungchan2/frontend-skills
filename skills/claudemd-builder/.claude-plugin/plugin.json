@@ -1,6 +1,0 @@
-{
-  "name": "claudemd-builder",
-  "description": "CLAUDE.md 파일을 블록 단위로 생성, 검사, 정리하는 스킬",
-  "version": "1.0.0",
-  "author": { "name": "Heechan" }
-}

@@ -1,0 +1,6 @@
+{
+  "name": "supabase",
+  "description": "Supabase 관련 스킬 모음. DB 초기 세팅, 마이그레이션, RLS 등.",
+  "version": "1.0.0",
+  "author": { "name": "Heechan" }
+}

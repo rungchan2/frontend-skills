@@ -1,0 +1,6 @@
+{
+  "name": "claudemd",
+  "description": "CLAUDE.md 메모리 파일 작성/리팩토링 스킬 모음.",
+  "version": "1.0.0",
+  "author": { "name": "Heechan" }
+}
